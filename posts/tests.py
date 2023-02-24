@@ -22,7 +22,7 @@ class HomePageViewTest(TestCase):
         self.assertEqual(res.status_code, 200)
 
     def test_view_url_by_name(self):
-        print(f"->{reverse('posts')}<-")
+        # print(f"->{reverse('posts')}<-")
         res = self.client.get(reverse('posts'))
         self.assertEqual(res.status_code, 200)
         self.assertTemplateUsed(res, 'posts.html')
