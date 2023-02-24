@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pages', # new
+    'posts' # firstly execute the 'python manage.py startapp posts'
 ]
 
 MIDDLEWARE = [
