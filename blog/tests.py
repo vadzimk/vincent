@@ -35,3 +35,27 @@ class BlogTests(TestCase):
         self.assertTemplateUsed(res, 'post_detail.html')
         self.assertEqual(self.client.get('/blog/post/0/').status_code, 404)
 
+    def test_post_create_view(self):
+        res = self.client.post(reverse('post_new'), {
+            'title': 'new title',
+            'body': 'new text',
+            'author': self.user.id
+        })
+        self.assertEqual(res.status_code, 302) # redirects to the newly created post
+        self.assertEqual(Post.objects.last().title, 'new title')
+        self.assertEqual(Post.objects.last().body, 'new text')
+
+    def test_post_update_view(self):
+        res = self.client.post(reverse('post_edit', args='1'), {
+            'title': 'update title',
+            'body': 'update body'
+        })
+        self.assertEqual(res.status_code, 302)
+        self.assertEqual(Post.objects.get(id=1).title, 'update title')
+        self.assertEqual(Post.objects.get(id=1).body, 'update body')
+
+    def test_post_delete_view(self):
+        res = self.client.post(reverse('post_delete', args='1'))
+        self.assertEqual(res.status_code, 302)
+        with self.assertRaises(Post.DoesNotExist):
+            Post.objects.get(id=1)
