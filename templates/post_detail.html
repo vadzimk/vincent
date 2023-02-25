@@ -14,7 +14,8 @@
         <h2>{{ post_content.title }}</h2>
         <p>{{ post_content.body }}</p>
     </div>
-        <a href="{% url 'post_edit' post_content.pk %}">+ Edit Blog Post</a>
+    <a href="{% url 'post_edit' post_content.pk %}">+ Edit Blog Post</a>
+    <p><a href="{% url 'post_delete' post_content.pk %}">+ Delete Blog Post</a></p>
 {% endblock content %}
 </body>
 </html>
