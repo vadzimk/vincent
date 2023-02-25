@@ -12,8 +12,9 @@
     <div class="post-entry">
 
         <h2>{{ post_content.title }}</h2>
-        <p>{{ post_content.body }}</p></div>
-
+        <p>{{ post_content.body }}</p>
+    </div>
+        <a href="{% url 'post_edit' post_content.pk %}">+ Edit Blog Post</a>
 {% endblock content %}
 </body>
 </html>
